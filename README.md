@@ -9,12 +9,12 @@
 - Score
 - Art
 - Start and end screens
-### Want:
+### Wants:
 - Kinds of debris
 - Momentum
 - Fuel
 - Damaging Debris
-### Dream:
+### Dreams:
 - Shooting
 - Planets (With gravity)
 - Text scrolling back story (Star Wars)
