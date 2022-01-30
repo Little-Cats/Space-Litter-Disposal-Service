@@ -297,13 +297,13 @@ Rigidbody2D:
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 0.8
-  m_AngularDrag: 0.05
+  m_AngularDrag: 0.8
   m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 4
+  m_Constraints: 0
 --- !u!114 &396765625
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -317,6 +317,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   force: 15
+  torque: 0.05
 --- !u!212 &396765626
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -377,7 +378,7 @@ Transform:
   m_GameObject: {fileID: 396765623}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 37.3, y: 39, z: 0}
-  m_LocalScale: {x: 15, y: 15, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 4
@@ -421,6 +422,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   guiController: {fileID: 1095951578}
+  slider: {fileID: 1892736255}
   maxScore: 100
   fuelConsumptionRate: 1
   fuelTankCapacity: 100
@@ -1711,7 +1713,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1892736253}
   - component: {fileID: 1892736255}
-  - component: {fileID: 1892736254}
   m_Layer: 5
   m_Name: FuelBar
   m_TagString: Untagged
@@ -1740,18 +1741,6 @@ RectTransform:
   m_AnchoredPosition: {x: -961.93, y: -86.586}
   m_SizeDelta: {x: 1923.9, y: 173.17}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1892736254
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1892736252}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 36c5c8f32ab73164684aa7da8d6c772f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1892736255
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -12,10 +12,10 @@ public class FuelTank : MonoBehaviour
     #endregion
 
     #region properties
-    public int CurrentFuelAmount { get => currentFuelAmount; }
-    public float ConsumeRate { get => consumeRate; }
-    public int MaxFuelAmount { get => maxFuelAmount; }
-    public Slider slider;
+    public int CurrentFuelAmount { get => currentFuelAmount; set => currentFuelAmount = value; }
+    public float ConsumeRate { get => consumeRate; set => ConsumeRate = value;}
+    public int MaxFuelAmount { get => maxFuelAmount; set => MaxFuelAmount = value;}
+    
     #endregion
 
     #region constructors
@@ -35,10 +35,6 @@ public class FuelTank : MonoBehaviour
     #endregion
 
     #region methods
-    public void SetMaxFuel(){
-        slider.maxValue = MaxFuelAmount;
-        slider.value = MaxFuelAmount;
-    }
     public int ChangeFuel(int amountToChange)
     {
         int newFuelAmount = currentFuelAmount + amountToChange;
@@ -50,7 +46,6 @@ public class FuelTank : MonoBehaviour
         else
             currentFuelAmount += amountToChange;
 
-        slider.value = currentFuelAmount;
         return currentFuelAmount;
     }
 
