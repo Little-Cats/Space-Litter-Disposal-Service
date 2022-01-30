@@ -8,8 +8,8 @@ public class PlayerInput : MonoBehaviour
     #region fields
     public InputMaster controls;
 
-    [SerializeField]
-    private float speed = 5f;
+    //[SerializeField]
+    //private float speed = 5f; // used for option A
     [SerializeField]
     private float force = 10f;
     private Vector2 moveInput;

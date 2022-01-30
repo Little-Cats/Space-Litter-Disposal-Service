@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -56,6 +57,12 @@ public class Player : MonoBehaviour
     #endregion
 
     #region methods
+    public void Refuel()
+    {
+        fuelTank.Refuel();
+        HandleGUIUpdates();
+    }
+
     private void HandleFuelConsumption()
     {
         if (playerInput.MoveInput != Vector2.zero)
