@@ -56,5 +56,12 @@ public class FuelTank : MonoBehaviour
     {
         return currentFuelAmount == 0;
     }
+
+    public void Refuel()
+    {
+        currentFuelAmount = maxFuelAmount;
+        // TODO: tick up fuel
+        // ChangeFuel(1);
+    }
     #endregion
 }

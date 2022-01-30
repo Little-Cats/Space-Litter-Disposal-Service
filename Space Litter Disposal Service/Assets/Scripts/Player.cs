@@ -1,10 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Player : MonoBehaviour
 {
     #region fields
+    public GameGUIController guiController;
+
     [SerializeField]
     private int maxScore = 100;
     private int score;
@@ -21,8 +21,8 @@ public class Player : MonoBehaviour
     #endregion
 
     #region properties
-    public int Score { get => score;}
     public bool GameOver { get => gameOver; }
+    public FuelTank FuelTank { get => fuelTank; }
     #endregion
 
     #region monobehaviour
@@ -33,7 +33,9 @@ public class Player : MonoBehaviour
 
     void Start()
     {
-        fuelTank = new FuelTank(100, 0.5f);
+        fuelTank = new FuelTank(fuelTankCapacity, fuelConsumptionRate);
+        score = 0;
+        HandleGUIUpdates();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -43,6 +45,7 @@ public class Player : MonoBehaviour
         {
             score += collectable.Score; //add score
             fuelTank.ChangeFuel(collectable.Fuel); //add fuel
+            HandleGUIUpdates();
         }
     }
 
@@ -60,9 +63,18 @@ public class Player : MonoBehaviour
         if (elapsedTime >= fuelTank.ConsumeRate)
         {
             fuelTank.ConsumeFuel();
+            HandleGUIUpdates();
             elapsedTime = 0;
             gameOver = fuelTank.FuelIsEmpty();
         }
+    }
+    #endregion
+
+    #region gui
+    private void HandleGUIUpdates()
+    {
+        guiController.UpdateScoreText(score, maxScore);
+        guiController.UpdateFuelText(fuelTank.CurrentFuelAmount);
     }
     #endregion
 }
