@@ -164,6 +164,7 @@ GameObject:
   - component: {fileID: 275585758}
   - component: {fileID: 275585760}
   - component: {fileID: 275585759}
+  - component: {fileID: 275585761}
   m_Layer: 0
   m_Name: Boundary_East
   m_TagString: Untagged
@@ -262,6 +263,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &275585761
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 275585757}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e62c17457d8b66346881c29747fe0ba0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &396765623
 GameObject:
   m_ObjectHideFlags: 0
@@ -532,6 +545,7 @@ GameObject:
   - component: {fileID: 582123172}
   - component: {fileID: 582123174}
   - component: {fileID: 582123173}
+  - component: {fileID: 582123175}
   m_Layer: 0
   m_Name: Boundary_West
   m_TagString: Untagged
@@ -630,6 +644,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &582123175
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 582123171}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e62c17457d8b66346881c29747fe0ba0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &630120900
 GameObject:
   m_ObjectHideFlags: 0
@@ -1346,6 +1372,7 @@ GameObject:
   - component: {fileID: 1076957887}
   - component: {fileID: 1076957889}
   - component: {fileID: 1076957888}
+  - component: {fileID: 1076957890}
   m_Layer: 0
   m_Name: Boundary_South
   m_TagString: Untagged
@@ -1444,6 +1471,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1076957890
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1076957886}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e62c17457d8b66346881c29747fe0ba0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1095951576
 GameObject:
   m_ObjectHideFlags: 0
@@ -1977,6 +2016,7 @@ GameObject:
   - component: {fileID: 2048593402}
   - component: {fileID: 2048593403}
   - component: {fileID: 2048593401}
+  - component: {fileID: 2048593404}
   m_Layer: 0
   m_Name: Boundary_North
   m_TagString: Untagged
@@ -2075,6 +2115,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &2048593404
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2048593400}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e62c17457d8b66346881c29747fe0ba0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2069018840
 GameObject:
   m_ObjectHideFlags: 0
