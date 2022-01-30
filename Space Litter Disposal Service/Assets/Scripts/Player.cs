@@ -7,10 +7,12 @@ public class Player : MonoBehaviour
 {
     #region fields
     // public GameGUIController guiController;
-    public Slider slider;
+    public Slider fuelSlider;
+    public Slider scoreSlider;
+    
 
     [SerializeField]
-    private int maxScore = 100;
+    private int maxScore = 1000;
     private int score;
     private bool gameOver = false;
 
@@ -42,7 +44,7 @@ public class Player : MonoBehaviour
     {
         fuelTank = new FuelTank(fuelTankCapacity, fuelConsumptionRate);
         SetMaxFuel(fuelTankCapacity);
-        score = 0;
+        init_score();
         HandleGUIUpdates();
     }
 
@@ -60,18 +62,26 @@ public class Player : MonoBehaviour
     const string DEBRIS_TAG = "Debris";
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        //print("HIT");
         if (collision.gameObject.CompareTag(DEBRIS_TAG))
         {
             Debris debris = collision.gameObject.GetComponent<Debris>();
             debris.Collect(suckInSpot);
             score += debris.Score;
             fuelTank.ChangeFuel(debris.Fuel);
+
+            //Update slider and Check for end game
+            scoreSlider.value = score;
+            if(score >= maxScore){
+                score = 0;
+                SceneManager.LoadScene(4);
+            }
         }
     }
-
-
-
+    private void init_score(){
+        score = 0;
+        scoreSlider.maxValue = maxScore;
+        scoreSlider.value = score;
+    }
     private void Update()
     {
         HandleFuelConsumption();
@@ -100,17 +110,15 @@ public class Player : MonoBehaviour
         }
     }
     public void SetMaxFuel(int fuelTankCapacity){
-       // slider.maxValue = fuelTankCapacity;
-        //slider.value = fuelTankCapacity;
+        fuelSlider.maxValue = fuelTankCapacity;
+        fuelSlider.value = fuelTankCapacity;
     }
     #endregion
 
     #region gui
     private void HandleGUIUpdates()
     {
-        // guiController.UpdateScoreText(score, maxScore);
-        // guiController.UpdateFuelText(fuelTank.CurrentFuelAmount);
-        slider.value = fuelTank.CurrentFuelAmount;
+        fuelSlider.value = fuelTank.CurrentFuelAmount;
     }
     #endregion
 }

@@ -11,9 +11,11 @@ public class Debris : MonoBehaviour, ICollectable
     [SerializeField] int score;
     [SerializeField] int fuel;
     [SerializeField, Min(0.5f)] float size;
+    
 
     public int Score => score;
     public int Fuel => fuel;
+    
 
     Transform suckInSpot;
 
