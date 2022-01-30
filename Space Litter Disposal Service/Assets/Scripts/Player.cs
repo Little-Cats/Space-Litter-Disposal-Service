@@ -5,8 +5,8 @@ using UnityEngine.UI;
 public class Player : MonoBehaviour
 {
     #region fields
-    public GameGUIController guiController;
-    //public Slider slider;
+    // public GameGUIController guiController;
+    public Slider slider;
 
     [SerializeField]
     private int maxScore = 100;
@@ -105,9 +105,9 @@ public class Player : MonoBehaviour
     #region gui
     private void HandleGUIUpdates()
     {
-        guiController.UpdateScoreText(score, maxScore);
-        guiController.UpdateFuelText(fuelTank.CurrentFuelAmount);
-        //slider.value = fuelTank.CurrentFuelAmount;
+        // guiController.UpdateScoreText(score, maxScore);
+        // guiController.UpdateFuelText(fuelTank.CurrentFuelAmount);
+        slider.value = fuelTank.CurrentFuelAmount;
     }
     #endregion
 }
