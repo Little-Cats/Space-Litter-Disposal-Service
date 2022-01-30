@@ -45,6 +45,7 @@ public class ObjectSpawner : MonoBehaviour
         tmp.transform.localScale = GetRandomScale();
         tmp.GetComponent<Rigidbody2D>().AddForce(GetRandomMomentum(), ForceMode2D.Impulse);
         tmp.GetComponent<Rigidbody2D>().AddTorque(GetRandomTorque(), ForceMode2D.Impulse);
+        tmp.GetComponent<Debris>().SetData();
         return tmp;
     }
 
@@ -86,7 +87,6 @@ public class ObjectSpawner : MonoBehaviour
     Vector3 GetRandomScale()
     {
         scale = Random.Range(randomScale.x, randomScale.y);
-
         return Vector3.one * scale;
     }
 

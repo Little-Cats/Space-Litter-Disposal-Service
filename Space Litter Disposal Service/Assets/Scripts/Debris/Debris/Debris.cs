@@ -6,7 +6,7 @@ public class Debris : MonoBehaviour, ICollectable
 {
     SpriteRenderer spriteRend;
     Rigidbody2D rigidbody2D;
-    BoxCollider2D boxCollider;
+    CircleCollider2D circleCollider2D;
 
     [SerializeField] int score;
     [SerializeField] int fuel;
@@ -15,20 +15,33 @@ public class Debris : MonoBehaviour, ICollectable
     public int Score => score;
     public int Fuel => fuel;
 
-    public void Collect()
+    Transform suckInSpot;
+
+    public void Collect(Transform target)
     {
         //Play Noise
         //Play Particle Effect
+        circleCollider2D.enabled = false;
+        suckInSpot = target;
+        InvokeRepeating("SuckIn", 0f, 0.05f);
     }
 
-    private void OnDestroy()
-    {
-    }
-
-    public void SetData(DebrisData _data) {
+    public void SetData() {
         spriteRend = GetComponent<SpriteRenderer>();
         rigidbody2D = GetComponent<Rigidbody2D>();
-        boxCollider = GetComponent<BoxCollider2D>();
+        circleCollider2D = GetComponent<CircleCollider2D>();
         transform.localScale = Vector3.one * size;
+        score = (int)((transform.localScale.magnitude) * 5f);
+    }
+
+    float lerp = 0;
+
+    void SuckIn() {
+        transform.localScale = Vector3.one * Mathf.Lerp(1, 0, lerp);
+        transform.position = Vector3.Lerp(transform.position, suckInSpot.position, lerp);
+        if (lerp >= 1) {
+            Destroy(gameObject);
+        }
+        lerp += 0.05f;
     }
 }
