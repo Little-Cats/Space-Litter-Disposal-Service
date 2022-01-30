@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -76,7 +77,9 @@ public class Player : MonoBehaviour
             fuelTank.ConsumeFuel();
             HandleGUIUpdates();
             elapsedTime = 0;
-            gameOver = fuelTank.FuelIsEmpty();
+            if(fuelTank.FuelIsEmpty()){
+                SceneManager.LoadScene(3);
+            }
         }
     }
     public void SetMaxFuel(int fuelTankCapacity){
