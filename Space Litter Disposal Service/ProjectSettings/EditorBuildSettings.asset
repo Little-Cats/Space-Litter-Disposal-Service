@@ -12,7 +12,7 @@ EditorBuildSettings:
     path: Assets/Scenes/InstructionsScreen.unity
     guid: 2600f2615fa21424a8c818daadf8620c
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
+    path: Assets/Scenes/GameScene.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
   - enabled: 1
     path: Assets/Scenes/GameOver.unity
