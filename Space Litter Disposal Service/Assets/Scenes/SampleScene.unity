@@ -574,6 +574,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b91265d0d9c9b9418f69dae45a3648b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  guiController: {fileID: 0}
   slider: {fileID: 0}
   maxScore: 100
   fuelConsumptionRate: 1
@@ -1775,11 +1776,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxObjects: 100
   debrisType:
+  - {fileID: 394566299853812396, guid: 706d821a9772b6b46b3b15418fb051dc, type: 3}
+  - {fileID: 394566299853812396, guid: 8882e217928b5934faedd1272fefc8bd, type: 3}
+  - {fileID: 394566299853812396, guid: e28838ec7f7a3294c8d52ff3d8bb60ed, type: 3}
   - {fileID: 394566299853812396, guid: 322bbb6588e90254bbc9dbc33d2089d6, type: 3}
-  - {fileID: 394566299853812396, guid: 3742846ed1eb70a40b12159ca2582219, type: 3}
   parent: {fileID: 1912064355}
   minMaxMomentum: {x: 1, y: 1}
   randomTorue: 1
+  randomScale: {x: 0.5, y: 1.5}
   respawnTimer: 5
 --- !u!1 &1930416626
 GameObject:

@@ -9,10 +9,11 @@ public class Debris : MonoBehaviour, ICollectable
     BoxCollider2D boxCollider;
 
     [SerializeField] int score;
-    [SerializeField] float size;
+    [SerializeField] int fuel;
+    [SerializeField, Min(0.5f)] float size;
 
     public int Score => score;
-    public int Fuel => 5;
+    public int Fuel => fuel;
 
     public void Collect()
     {
@@ -28,5 +29,6 @@ public class Debris : MonoBehaviour, ICollectable
         spriteRend = GetComponent<SpriteRenderer>();
         rigidbody2D = GetComponent<Rigidbody2D>();
         boxCollider = GetComponent<BoxCollider2D>();
+        transform.localScale = Vector3.one * size;
     }
 }

@@ -19,6 +19,7 @@ public class ObjectSpawner : MonoBehaviour
 
     [SerializeField] Vector2 minMaxMomentum = new Vector2(1,1);
     [SerializeField] float randomTorue = 1f;
+    [SerializeField, Min(0.5f)] Vector2 randomScale;
     [SerializeField] float respawnTimer = 5f;
     private void Awake()
     {
@@ -41,6 +42,7 @@ public class ObjectSpawner : MonoBehaviour
         int randomData = Random.Range(0, debrisType.Count);
         tmp = Instantiate(debrisType[randomData], parent.transform);
         tmp.transform.position = GetRandomLocation();
+        tmp.transform.localScale = GetRandomScale();
         tmp.GetComponent<Rigidbody2D>().AddForce(GetRandomMomentum(), ForceMode2D.Impulse);
         tmp.GetComponent<Rigidbody2D>().AddTorque(GetRandomTorque(), ForceMode2D.Impulse);
         return tmp;
@@ -48,10 +50,16 @@ public class ObjectSpawner : MonoBehaviour
 
     #region Spawning
 
+    const float radius = 50f;
     Vector2 GetRandomLocation()
     {
         rndLocation.x = Random.Range(-bounds.x / 2, bounds.x / 2);
         rndLocation.y = Random.Range(-bounds.y / 2, bounds.y / 2);
+
+        if (Vector3.Distance(rndLocation, cameraT.position) < radius) {
+            rndLocation.x = cameraT.position.x + Mathf.Cos(Random.value) * radius;
+            rndLocation.y = cameraT.position.y + Mathf.Cos(Random.value) * radius;
+        }
 
         return rndLocation;
     }
@@ -59,7 +67,7 @@ public class ObjectSpawner : MonoBehaviour
     Vector2 rndLocation;
     Vector2 rndMomentum;
     float torque;
-
+    float scale;
     
     Vector2 GetRandomMomentum() {
         rndMomentum.x = Random.Range(-minMaxMomentum.x, minMaxMomentum.x);
@@ -73,6 +81,13 @@ public class ObjectSpawner : MonoBehaviour
         torque = Random.Range(-randomTorue, randomTorue);
 
         return torque;
+    }
+
+    Vector3 GetRandomScale()
+    {
+        scale = Random.Range(randomScale.x, randomScale.y);
+
+        return Vector3.one * scale;
     }
 
     #endregion
