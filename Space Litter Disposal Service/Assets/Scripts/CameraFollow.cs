@@ -13,7 +13,7 @@ public class CameraFollow : MonoBehaviour
     #endregion
 
     #region monobehaviour
-    private void LateUpdate()
+    private void FixedUpdate()
     {
         Vector3 desiredPosition = targetTransform.position + followOffset;
         Vector3 smoothedPosition = Vector3.Lerp(transform.position, desiredPosition, smoothSpeed);
