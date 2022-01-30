@@ -8,12 +8,18 @@ public class PlayerInput : MonoBehaviour
     #region fields
     public InputMaster controls;
 
-    [SerializeField]
-    private float speed = 5f;
+    //[SerializeField]
+    //private float speed = 5f; // used for option A
     [SerializeField]
     private float force = 10f;
+    [SerializeField]
+    private float torque = 10f;
     private Vector2 moveInput;
     private Rigidbody2D rb;
+    #endregion
+
+    #region properties
+    public Vector2 MoveInput { get => moveInput;}
     #endregion
 
     #region monobehaviour
@@ -32,7 +38,8 @@ public class PlayerInput : MonoBehaviour
     {
         // movement
         //rb.velocity = moveInput * speed; // option A
-        rb.AddForce(moveInput * force); // option B
+        rb.AddRelativeForce(Vector2.up * moveInput * force); // option B
+        rb.AddTorque(-moveInput.x * torque);
     }
 
     private void OnEnable()
@@ -49,13 +56,12 @@ public class PlayerInput : MonoBehaviour
     #region methods
     void Move(Vector2 direction)
     {
-        moveInput = direction;
-        Debug.Log("You're trying to move: " + direction);   
+        moveInput = direction; 
     }
 
     void Shoot()
     {
-        Debug.Log("You're trying to shoot!");
+        //Debug.Log("You're trying to shoot!");
     }
     #endregion
 }
