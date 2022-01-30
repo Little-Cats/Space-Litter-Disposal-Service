@@ -16,6 +16,10 @@ public class PlayerInput : MonoBehaviour
     private Rigidbody2D rb;
     #endregion
 
+    #region properties
+    public Vector2 MoveInput { get => moveInput;}
+    #endregion
+
     #region monobehaviour
     private void Awake()
     {
@@ -49,13 +53,12 @@ public class PlayerInput : MonoBehaviour
     #region methods
     void Move(Vector2 direction)
     {
-        moveInput = direction;
-        Debug.Log("You're trying to move: " + direction);   
+        moveInput = direction; 
     }
 
     void Shoot()
     {
-        Debug.Log("You're trying to shoot!");
+        //Debug.Log("You're trying to shoot!");
     }
     #endregion
 }
