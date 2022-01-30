@@ -7,6 +7,7 @@ public class Player : MonoBehaviour
 {
     #region fields
     // public GameGUIController guiController;
+    public GameObject lowFuelWarning;
     public Slider fuelSlider;
     public Slider scoreSlider;
     
@@ -15,6 +16,9 @@ public class Player : MonoBehaviour
     private int maxScore = 1000;
     private int score;
     private bool gameOver = false;
+    private Rigidbody2D rb;
+    private float startingDrag;
+    private float lowFuelDrag;
 
     private PlayerInput playerInput;
 
@@ -37,7 +41,9 @@ public class Player : MonoBehaviour
     #region monobehaviour
     private void Awake()
     {
+        rb = GetComponent<Rigidbody2D>();
         playerInput = GetComponent<PlayerInput>();
+        lowFuelWarning.SetActive(false);
     }
 
     void Start()
@@ -45,6 +51,8 @@ public class Player : MonoBehaviour
         fuelTank = new FuelTank(fuelTankCapacity, fuelConsumptionRate);
         SetMaxFuel(fuelTankCapacity);
         init_score();
+        startingDrag = rb.drag;
+        lowFuelDrag = startingDrag / 2;
         HandleGUIUpdates();
     }
 
@@ -102,6 +110,7 @@ public class Player : MonoBehaviour
         if (elapsedTime >= fuelTank.ConsumeRate)
         {
             fuelTank.ConsumeFuel();
+            HandleDrag();
             HandleGUIUpdates();
             elapsedTime = 0;
             if(fuelTank.FuelIsEmpty()){
@@ -113,12 +122,35 @@ public class Player : MonoBehaviour
         fuelSlider.maxValue = fuelTankCapacity;
         fuelSlider.value = fuelTankCapacity;
     }
+
+    private void HandleDrag()
+    {
+        float fuelRatio = (float)fuelTank.CurrentFuelAmount / (float)fuelTankCapacity;
+        if (fuelRatio <= 0.35f && rb.drag != lowFuelDrag)
+        {
+            rb.drag = lowFuelDrag;
+        }
+        else if (fuelRatio > 0.35f && rb.drag != startingDrag)
+        {
+            rb.drag = startingDrag;
+            lowFuelWarning.SetActive(false);
+        }
+    }
     #endregion
 
     #region gui
     private void HandleGUIUpdates()
     {
+        float fuelRatio = (float)fuelTank.CurrentFuelAmount / (float)fuelTankCapacity;
         fuelSlider.value = fuelTank.CurrentFuelAmount;
+        if (!lowFuelWarning.activeSelf && fuelRatio <= 0.35f)
+        {
+            lowFuelWarning.SetActive(true);
+        }
+        else if (lowFuelWarning.activeSelf && fuelRatio > 0.35f)
+        {
+            lowFuelWarning.SetActive(false);
+        }
     }
     #endregion
 }
