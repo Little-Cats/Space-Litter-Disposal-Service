@@ -6,7 +6,7 @@ public class Player : MonoBehaviour
 {
     #region fields
     public GameGUIController guiController;
-    public Slider slider;
+    //public Slider slider;
 
     [SerializeField]
     private int maxScore = 100;
@@ -29,6 +29,8 @@ public class Player : MonoBehaviour
     public FuelTank FuelTank { get => fuelTank; }
     #endregion
 
+    [SerializeField] Transform suckInSpot;
+
     #region monobehaviour
     private void Awake()
     {
@@ -43,7 +45,7 @@ public class Player : MonoBehaviour
         HandleGUIUpdates();
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    /*private void OnCollisionEnter2D(Collision2D collision)
     {
         ICollectable collectable = collision.gameObject.GetComponent<ICollectable>();
         if (collectable != null) //check for score
@@ -52,7 +54,22 @@ public class Player : MonoBehaviour
             fuelTank.ChangeFuel(collectable.Fuel); //add fuel
             HandleGUIUpdates();
         }
+    }*/
+
+    const string DEBRIS_TAG = "Debris";
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        //print("HIT");
+        if (collision.gameObject.CompareTag(DEBRIS_TAG))
+        {
+            Debris debris = collision.gameObject.GetComponent<Debris>();
+            debris.Collect(suckInSpot);
+            score += debris.Score;
+            fuelTank.ChangeFuel(debris.Fuel);
+        }
     }
+
+
 
     private void Update()
     {
@@ -80,8 +97,8 @@ public class Player : MonoBehaviour
         }
     }
     public void SetMaxFuel(int fuelTankCapacity){
-        slider.maxValue = fuelTankCapacity;
-        slider.value = fuelTankCapacity;
+       // slider.maxValue = fuelTankCapacity;
+        //slider.value = fuelTankCapacity;
     }
     #endregion
 
@@ -90,7 +107,7 @@ public class Player : MonoBehaviour
     {
         guiController.UpdateScoreText(score, maxScore);
         guiController.UpdateFuelText(fuelTank.CurrentFuelAmount);
-        slider.value = fuelTank.CurrentFuelAmount;
+        //slider.value = fuelTank.CurrentFuelAmount;
     }
     #endregion
 }
