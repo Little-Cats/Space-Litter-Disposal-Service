@@ -1,10 +1,12 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
     #region fields
-    public GameGUIController guiController;
+    //public GameGUIController guiController;
+    public Slider slider;
 
     [SerializeField]
     private int maxScore = 100;
@@ -20,6 +22,7 @@ public class Player : MonoBehaviour
     private FuelTank fuelTank;
     private float elapsedTime;
     #endregion
+    
 
     #region properties
     public bool GameOver { get => gameOver; }
@@ -35,6 +38,7 @@ public class Player : MonoBehaviour
     void Start()
     {
         fuelTank = new FuelTank(fuelTankCapacity, fuelConsumptionRate);
+        SetMaxFuel(fuelTankCapacity);
         score = 0;
         HandleGUIUpdates();
     }
@@ -75,13 +79,18 @@ public class Player : MonoBehaviour
             gameOver = fuelTank.FuelIsEmpty();
         }
     }
+    public void SetMaxFuel(int fuelTankCapacity){
+        slider.maxValue = fuelTankCapacity;
+        slider.value = fuelTankCapacity;
+    }
     #endregion
 
     #region gui
     private void HandleGUIUpdates()
     {
-        guiController.UpdateScoreText(score, maxScore);
-        guiController.UpdateFuelText(fuelTank.CurrentFuelAmount);
+        //guiController.UpdateScoreText(score, maxScore);
+        //guiController.UpdateFuelText(fuelTank.CurrentFuelAmount);
+        slider.value = fuelTank.CurrentFuelAmount;
     }
     #endregion
 }

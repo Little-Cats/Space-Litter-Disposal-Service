@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class FuelTank : MonoBehaviour
 {
@@ -11,9 +12,10 @@ public class FuelTank : MonoBehaviour
     #endregion
 
     #region properties
-    public int CurrentFuelAmount { get => currentFuelAmount; }
-    public float ConsumeRate { get => consumeRate; }
-    public int MaxFuelAmount { get => maxFuelAmount; }
+    public int CurrentFuelAmount { get => currentFuelAmount; set => currentFuelAmount = value; }
+    public float ConsumeRate { get => consumeRate; set => ConsumeRate = value;}
+    public int MaxFuelAmount { get => maxFuelAmount; set => MaxFuelAmount = value;}
+    
     #endregion
 
     #region constructors

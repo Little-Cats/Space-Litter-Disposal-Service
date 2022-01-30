@@ -12,6 +12,8 @@ public class PlayerInput : MonoBehaviour
     //private float speed = 5f; // used for option A
     [SerializeField]
     private float force = 10f;
+    [SerializeField]
+    private float torque = 10f;
     private Vector2 moveInput;
     private Rigidbody2D rb;
     #endregion
@@ -36,7 +38,8 @@ public class PlayerInput : MonoBehaviour
     {
         // movement
         //rb.velocity = moveInput * speed; // option A
-        rb.AddForce(moveInput * force); // option B
+        rb.AddRelativeForce(Vector2.up * moveInput * force); // option B
+        rb.AddTorque(-moveInput.x * torque);
     }
 
     private void OnEnable()
