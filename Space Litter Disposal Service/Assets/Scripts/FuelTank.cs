@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class FuelTank : MonoBehaviour
 {
@@ -14,6 +15,7 @@ public class FuelTank : MonoBehaviour
     public int CurrentFuelAmount { get => currentFuelAmount; }
     public float ConsumeRate { get => consumeRate; }
     public int MaxFuelAmount { get => maxFuelAmount; }
+    public Slider slider;
     #endregion
 
     #region constructors
@@ -33,6 +35,10 @@ public class FuelTank : MonoBehaviour
     #endregion
 
     #region methods
+    public void SetMaxFuel(){
+        slider.maxValue = MaxFuelAmount;
+        slider.value = MaxFuelAmount;
+    }
     public int ChangeFuel(int amountToChange)
     {
         int newFuelAmount = currentFuelAmount + amountToChange;
@@ -44,6 +50,7 @@ public class FuelTank : MonoBehaviour
         else
             currentFuelAmount += amountToChange;
 
+        slider.value = currentFuelAmount;
         return currentFuelAmount;
     }
 
